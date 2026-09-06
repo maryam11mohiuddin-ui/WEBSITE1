@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: 'class', theme: { extend: { colors: { 'error-container': '#ffdad6', 'surface-container-low': '#eff4ff', 'on-error': '#ffffff', 'secondary-fixed': '#dce1ff', 'on-secondary-fixed': '#001551', 'outline': '#74777f', 'surface-variant': '#d3e4fe', 'primary-container': '#0f294a', 'background': '#f8f9ff', 'on-secondary': '#ffffff', 'on-surface': '#0b1c30', 'secondary-container': '#4069f2', 'surface-container-high': '#dce9ff', 'on-tertiary-container': '#d97705', 'secondary': '#1d4ed8', 'surface-container-lowest': '#ffffff', 'outline-variant': '#c4c6cf', 'on-secondary-fixed-variant': '#0039b5', 'primary-fixed-dim': '#b0c8f1', 'tertiary-container': '#422000', 'surface': '#f8f9ff', 'on-secondary-container': '#fffbff', 'on-tertiary-fixed': '#2f1500', 'on-primary-fixed': '#001b3b', 'on-tertiary-fixed-variant': '#6e3900', 'surface-dim': '#cbdbf5', 'surface-container-highest': '#d3e4fe', 'primary-fixed': '#d5e3ff', 'inverse-primary': '#b0c8f1', 'surface-tint': '#485f83', 'surface-container': '#e5eeff', 'surface-bright': '#f8f9ff', 'on-primary-fixed-variant': '#30476a', 'on-surface-variant': '#44474e', 'tertiary-fixed-dim': '#ffb77d', 'inverse-on-surface': '#eaf1ff', 'tertiary': '#240f00', 'error': '#ba1a1a', 'on-primary-container': '#7a91b7', 'inverse-surface': '#213145', 'on-primary': '#ffffff', 'tertiary-fixed': '#ffdcc3', 'primary': '#00142f', 'secondary-fixed-dim': '#b7c4ff', 'on-tertiary': '#ffffff', 'on-error-container': '#93000a', 'on-background': '#0b1c30' }, borderRadius: { 'DEFAULT': '0.125rem', 'lg': '0.25rem', 'xl': '0.5rem', 'full': '0.75rem' }, spacing: { 'unit-md': '0.75rem', 'unit-2xl': '2rem', 'unit-2xs': '0.125rem', 'margin-screen': '1.5rem', 'unit-lg': '1.25rem', 'unit-xs': '0.25rem', 'gutter-compact': '0.75rem', 'unit-xl': '1.5rem', 'gutter-table': '0.5rem', 'unit-sm': '0.5rem', 'unit-3xl': '2.5rem', 'unit-base': '1rem' }, fontFamily: { 'headline-md': ['Plus Jakarta Sans'], 'tabular-data': ['Inter'], 'body-lg': ['Inter'], 'body-sm': ['Inter'], 'display-xl': ['Plus Jakarta Sans'], 'display-xl-mobile': ['Plus Jakarta Sans'], 'headline-lg-mobile': ['Plus Jakarta Sans'], 'body-md': ['Inter'], 'title-md': ['Plus Jakarta Sans'], 'headline-lg': ['Plus Jakarta Sans'], 'headline-sm': ['Plus Jakarta Sans'], 'label-md': ['Inter'], 'label-sm': ['Inter'] }, fontSize: { 'headline-md': ['22px', { lineHeight: '30px', letterSpacing: '-0.01em', fontWeight: '600' }], 'tabular-data': ['13px', { lineHeight: '18px', letterSpacing: '-0.01em', fontWeight: '500' }], 'body-lg': ['15px', { lineHeight: '24px', letterSpacing: '0em', fontWeight: '400' }], 'body-sm': ['12px', { lineHeight: '18px', letterSpacing: '0.01em', fontWeight: '400' }], 'display-xl': ['40px', { lineHeight: '48px', letterSpacing: '-0.02em', fontWeight: '700' }], 'display-xl-mobile': ['30px', { lineHeight: '38px', letterSpacing: '-0.01em', fontWeight: '700' }], 'headline-lg-mobile': ['22px', { lineHeight: '30px', letterSpacing: '-0.01em', fontWeight: '600' }], 'body-md': ['13px', { lineHeight: '20px', letterSpacing: '0em', fontWeight: '400' }], 'title-md': ['15px', { lineHeight: '22px', letterSpacing: '0.005em', fontWeight: '600' }], 'headline-lg': ['28px', { lineHeight: '36px', letterSpacing: '-0.02em', fontWeight: '700' }], 'headline-sm': ['18px', { lineHeight: '26px', letterSpacing: '0em', fontWeight: '600' }], 'label-md': ['11px', { lineHeight: '16px', letterSpacing: '0.04em', fontWeight: '600' }], 'label-sm': ['10px', { lineHeight: '14px', letterSpacing: '0.06em', fontWeight: '700' }] } } } };</script></head><body class="bg-background font-body-md text-on-surface min-h-screen flex flex-col antialiased selection:bg-secondary selection:text-on-secondary"><header class="fixed top-0 w-full z-50 shadow-[0_1px_8px_rgba(0,0,0,0.06)]"><div class="w-full bg-primary-container text-on-primary-container"><div class="h-1 bg-gradient-to-r from-[#FF9933] via-[#FFFFFF] to-[#138808] w-full"></div><div class="max-w-[1680px] mx-auto px-margin-screen h-8 flex items-center justify-between font-label-md text-label-md"><div class="flex items-center gap-unit-md"><span class="font-semibold tracking-wide text-surface-bright flex items-center gap-unit-xs"><span class="material-symbols-outlined text-sm text-secondary-fixed">assured_workload</span>भारत सरकार | Government of India</span><span class="hidden md:inline-block text-on-primary-container/60">•</span><span class="hidden md:inline-block text-surface-variant/80">Ministry of Rural Development &amp; Land Resources</span><div class="hidden lg:flex items-center gap-unit-xs ml-unit-xs"><span class="px-1.5 py-0.5 rounded bg-surface-container-highest/20 text-surface-bright font-label-sm text-label-sm border border-surface-variant/30">Digital India</span><span class="px-1.5 py-0.5 rounded bg-surface-container-highest/20 text-surface-bright font-label-sm text-label-sm border border-surface-variant/30">DILRMP Compliant</span></div></div><div class="flex items-center gap-unit-md"><div class="flex items-center gap-unit-xs font-label-sm text-label-sm"><span class="text-on-primary-container/70">भाषा:</span><select class="bg-primary text-surface-bright rounded px-1.5 py-0.5 font-label-sm text-label-sm cursor-pointer outline-none hover:bg-primary-container transition-colors"><option value="en">English</option><option value="hi">हिन्दी</option><option value="mr">मराठी</option><option value="te">తెలుగు</option><option value="ta">தமிழ்</option></select></div><div class="hidden sm:flex items-center gap-1 bg-primary px-1.5 py-0.5 rounded text-surface-bright font-label-sm text-label-sm"><button class="hover:text-secondary-fixed transition-colors" title="Decrease Text Size" type="button">A-</button><span class="text-on-primary-container/40">|</span><button class="hover:text-secondary-fixed transition-colors font-bold" title="Normal Text Size" type="button">A</button><span class="text-on-primary-container/40">|</span><button class="hover:text-secondary-fixed transition-colors" title="Increase Text Size" type="button">A+</button></div><div class="flex items-center gap-1.5 text-surface-bright font-tabular-data text-tabular-data"><span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span><span class="hidden sm:inline font-label-sm text-label-sm text-on-primary-container/80">NIC-CERT Secured</span></div></div></div></div><div class="w-full bg-surface-container-lowest"><div class="max-w-[1680px] mx-auto px-margin-screen h-16 flex items-center justify-between gap-unit-lg"><div class="flex items-center gap-unit-md"><img alt="BhoomiDrishti AI Emblem" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UR0W23s-Nd3TjkEsgYhXbr8JZWSqnOsuLYPJO_eSUWCKEqLziREVHYW8RkcPoKAxADKRfN58NlPspVcwXmBRUrlzi1QjHCQP0rK7T60o_BITJ0JIedQa3CbnqHAT7F1BokKXOEiEupACHVzXiD8oDORIsduL2_ZG_mPUZJTLgHZIeipgTQ2eax_bD0oJVC4bV-2Sh1uF2xNuH8cxCWIiGPaxRL89KNgI6j1m8ddqEiNzEKiziJL7ejug"/><div class="flex flex-col justify-center"><div class="flex items-center gap-unit-xs"><span class="font-headline-sm text-headline-sm text-primary tracking-tight font-bold">BhoomiDrishti AI</span><span class="font-headline-sm text-headline-sm text-on-surface-variant font-medium">(भूमिदृष्टि)</span></div><span class="hidden sm:block font-label-sm text-label-sm text-on-surface-variant">Intelligent Land Record Digitization &amp; Validation Platform (DILRMP)</span></div></div><div class="hidden md:flex flex-1 max-w-md mx-unit-md"><div class="relative w-full flex items-center"><span class="material-symbols-outlined absolute left-unit-sm text-on-surface-variant text-lg">search</span><input class="w-full h-9 pl-9 pr-unit-md bg-surface-container-low text-on-surface placeholder:text-on-surface-variant/70 font-body-sm text-body-sm rounded focus:outline-none focus:bg-surface-container-lowest transition-all shadow-[inset_0_1px_2px_rgba(0,0,0,0.04)]" placeholder="Search Khasra, Survey No, Plot Vector or RoR Jamabandi..." type="text"/><span class="absolute right-unit-xs text-on-surface-variant bg-surface-container-high/60 px-1.5 py-0.5 rounded font-label-sm text-label-sm font-tabular-data">Ctrl+K</span></div></div><div class="flex items-center gap-unit-md"><div class="relative"><button class="relative p-1.5 text-on-surface-variant hover:text-primary hover:bg-surface-container-low rounded transition-colors" title="Verification Alerts &amp; Queue" type="button"><span class="material-symbols-outlined text-xl">notifications</span><span class="absolute top-0.5 right-0.5 w-4 h-4 bg-secondary text-on-secondary rounded-full flex items-center justify-center font-label-sm text-label-sm font-tabular-data font-bold">7</span></button></div><div class="h-7 w-[1px] bg-outline-variant/30 hidden sm:block"></div><div class="flex items-center gap-unit-sm pl-unit-xs"><div class="text-right hidden xl:block"><div class="font-title-md text-title-md text-primary leading-tight font-semibold">Dr. R. K. Sharma, IAS</div><div class="font-label-sm text-label-sm text-on-surface-variant font-medium">Director General of Land Records</div></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-surface-variant/50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQ3XB6QaBHQjdz6QsVHpVMmP1PD8FXcIs2fxjwXy1-6R9MNf5CVwirCK4FyOWFjq6SZCY3RBbHUpbkL1281zb86aNNk5wQtWExdHYP7mkmMATRFIiRweHghuFl3DsPNfwMGMsE_7BpXdf7rkagBuGW_c68rVC3vxFkd2zSbRy4rv_SZOz4FdKEZmMQEvlOTW-ydGxt7dajNYC6vMTvs8Jui4IAK5e-ohkCL6yBkC0PZq7oZ1Si9GU"/></div></div></div></div><div class="w-full bg-surface-container-low shadow-[0_1px_4px_rgba(0,0,0,0.03)]"><div class="max-w-[1680px] mx-auto px-margin-screen"><nav class="flex items-center gap-1 overflow-x-auto py-1" data-active-classes="bg-surface-container-lowest text-secondary font-bold shadow-[0_1px_3px_rgba(0,0,0,0.06)]"><a class="px-unit-md py-2 font-title-md text-title-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all whitespace-nowrap rounded" data-path="executive-dashboard-metrics" href="#">Executive Dashboard &amp; Metrics</a><a class="px-unit-md py-2 font-title-md text-title-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all whitespace-nowrap rounded" data-path="ai-digitization-ocr-studio" href="#">AI Digitization &amp; OCR Studio</a><a class="px-unit-md py-2 font-title-md text-title-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all whitespace-nowrap rounded" data-path="validation-verification-workbench" href="#">Validation &amp; Verification Workbench</a><a class="px-unit-md py-2 font-title-md text-title-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all whitespace-nowrap rounded" data-path="scope-of-study-system-specs" href="#">Scope of Study &amp; System Specs</a><a class="px-unit-md py-2 font-title-md text-title-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all whitespace-nowrap rounded" data-path="gis-cadastral-repository" href="#">GIS &amp; Cadastral Repository</a></nav></div></div></header><main class="w-full pt-[148px] bg-background flex-1"><div class="max-w-[1680px] mx-auto px-margin-screen py-unit-xl"><div class="flex flex-col w-full">
+<!-- Queue Status Banner & Record Header -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-unit-md bg-surface-container-lowest p-unit-lg rounded-xl shadow-sm mb-unit-lg">
+<div class="flex flex-wrap items-center gap-unit-md">
+<div class="flex items-center gap-unit-xs bg-primary text-on-primary px-unit-md py-1.5 rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-base">rule_settings</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Active Queue</span>
+<span class="font-tabular-data text-tabular-data font-bold bg-secondary px-2 py-0.5 rounded text-on-secondary">24,810 pending</span>
+</div>
+<div class="h-6 w-px bg-surface-variant hidden sm:block"></div>
+<div class="flex flex-col">
+<div class="flex items-center gap-unit-xs">
+<span class="font-headline-sm text-headline-sm text-primary tracking-tight font-bold">#VAL-MH-PUN-44021</span>
+<span class="font-label-sm text-label-sm bg-surface-container text-on-surface-variant px-2 py-0.5 rounded font-semibold">Saat-Bara (7/12 Extract)</span>
+<span class="font-label-sm text-label-sm bg-secondary-fixed text-on-secondary-fixed px-2 py-0.5 rounded font-bold">Jurisdiction: Pune • Haveli</span>
+</div>
+<div class="flex items-center gap-unit-md text-on-surface-variant font-label-md text-label-md mt-0.5">
+<span>Village: Wagholi (Code: 554318)</span>
+<span>•</span>
+<span>Survey/Gat No: 341/2B</span>
+<span>•</span>
+<span class="font-tabular-data text-tabular-data">Ingestion Epoch: 2025-02-28 14:18:02 IST</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-unit-sm self-start lg:self-center">
+<button class="flex items-center gap-unit-xs bg-surface-container-low hover:bg-surface-container text-primary font-title-md text-title-md px-unit-md py-1.5 rounded transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-base">navigate_before</span>
+<span>Prev Record</span>
+</button>
+<div class="font-tabular-data text-tabular-data font-bold px-2 text-on-surface-variant">1,248 / 24,810</div>
+<button class="flex items-center gap-unit-xs bg-surface-container-low hover:bg-surface-container text-primary font-title-md text-title-md px-unit-md py-1.5 rounded transition-colors shadow-sm" type="button">
+<span>Next Record</span>
+<span class="material-symbols-outlined text-base">navigate_next</span>
+</button>
+<button class="p-1.5 bg-surface-container-low hover:bg-surface-container text-secondary rounded transition-colors ml-unit-xs" title="Download Audit Pack" type="button">
+<span class="material-symbols-outlined text-lg">download</span>
+</button>
+</div>
+</div>
+<!-- Four-Pillar Automated Validation Status Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-unit-md mb-unit-lg">
+<!-- Pillar 1 -->
+<div class="bg-surface-container-lowest p-unit-md rounded-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-unit-xs">
+<div class="flex items-center gap-unit-xs">
+<span class="material-symbols-outlined text-secondary text-lg">polyline</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Pillar 01 • GIS Geometry</span>
+</div>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded font-label-sm text-label-sm font-bold bg-surface-container-low text-secondary">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> PASSED
+          </span>
+</div>
+<div class="font-title-md text-title-md text-primary font-bold mb-1">Cadastral Boundary Match</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Polygon vector area matches Record of Rights stated area within <span class="font-tabular-data text-tabular-data font-bold text-primary">0.02%</span> tolerance.
+        </p>
+</div>
+<div class="mt-unit-md pt-unit-xs bg-surface-container-low p-unit-xs rounded flex items-center justify-between font-tabular-data text-tabular-data">
+<span class="text-on-surface-variant text-xs">Vector Area: 1.412 Ha</span>
+<span class="text-primary font-bold text-xs">RoR: 1.415 Ha (Δ 0.003)</span>
+</div>
+</div>
+<!-- Pillar 2 -->
+<div class="bg-surface-container-lowest p-unit-md rounded-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-unit-xs">
+<div class="flex items-center gap-unit-xs">
+<span class="material-symbols-outlined text-on-tertiary-container text-lg">sync_problem</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Pillar 02 • Mutation Link</span>
+</div>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded font-label-sm text-label-sm font-bold bg-surface-container-high text-on-tertiary-container">
+<span class="w-1.5 h-1.5 rounded-full bg-on-tertiary-container animate-pulse"></span> WARNING
+          </span>
+</div>
+<div class="font-title-md text-title-md text-primary font-bold mb-1">Identity &amp; Mutation Ledger</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Historical mutation <span class="font-tabular-data text-tabular-data font-bold text-primary">#2004-98</span> has entry discrepancy vs SRO deed registry timestamp.
+        </p>
+</div>
+<div class="mt-unit-md pt-unit-xs bg-surface-container-high p-unit-xs rounded flex items-center justify-between font-tabular-data text-tabular-data text-on-tertiary-container">
+<span class="text-xs font-semibold">Ledger: Vol-84/Pg-112</span>
+<span class="text-xs font-bold underline cursor-pointer">Reconcile (1 Flag)</span>
+</div>
+</div>
+<!-- Pillar 3 -->
+<div class="bg-surface-container-lowest p-unit-md rounded-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-unit-xs">
+<div class="flex items-center gap-unit-xs">
+<span class="material-symbols-outlined text-secondary text-lg">layers</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Pillar 03 • Overlap Check</span>
+</div>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded font-label-sm text-label-sm font-bold bg-surface-container-low text-secondary">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> PASSED
+          </span>
+</div>
+<div class="font-title-md text-title-md text-primary font-bold mb-1">Duplicate Parcel Detection</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Zero overlapping polygons or competing encumbrances detected in BhuNaksha GIS repository layer.
+        </p>
+</div>
+<div class="mt-unit-md pt-unit-xs bg-surface-container-low p-unit-xs rounded flex items-center justify-between font-tabular-data text-tabular-data">
+<span class="text-on-surface-variant text-xs">Neighboring Nodes: 8</span>
+<span class="text-primary font-bold text-xs">Encroachment: 0.00%</span>
+</div>
+</div>
+<!-- Pillar 4 -->
+<div class="bg-surface-container-lowest p-unit-md rounded-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-unit-xs">
+<div class="flex items-center gap-unit-xs">
+<span class="material-symbols-outlined text-secondary text-lg">gavel</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Pillar 04 • Legal Limits</span>
+</div>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded font-label-sm text-label-sm font-bold bg-surface-container-low text-secondary">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> PASSED
+          </span>
+</div>
+<div class="font-title-md text-title-md text-primary font-bold mb-1">Ceiling Act Compliance</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Aggregated family holdings across state aggregate to 4.2 Ha; within Maharashtra Agricultural Land Ceiling limits.
+        </p>
+</div>
+<div class="mt-unit-md pt-unit-xs bg-surface-container-low p-unit-xs rounded flex items-center justify-between font-tabular-data text-tabular-data">
+<span class="text-on-surface-variant text-xs">Threshold: 21.85 Ha max</span>
+<span class="text-primary font-bold text-xs">Safety Ratio: 19.2%</span>
+</div>
+</div>
+</div>
+<!-- Main Content Grid: Dispute Resolution Hub & Anomaly Inspector -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-unit-lg mb-unit-lg">
+<!-- Left 8 Columns: Low-Confidence Field Resolution Hub -->
+<div class="xl:col-span-8 flex flex-col gap-unit-md">
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-unit-lg">
+<div class="flex flex-wrap items-center justify-between gap-unit-sm pb-unit-md mb-unit-md bg-surface-container-low -mx-unit-lg -mt-unit-lg p-unit-lg rounded-t-xl">
+<div>
+<div class="flex items-center gap-unit-xs">
+<span class="material-symbols-outlined text-secondary text-xl">troubleshoot</span>
+<h2 class="font-headline-sm text-headline-sm text-primary font-bold">Low-Confidence Field Resolution Hub</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+              Multi-source canonical reconciliation between Optical Character Recognition, Tehsildar Modi-script ledger, and SRO IGR-Prerna API.
+            </p>
+</div>
+<div class="flex items-center gap-unit-xs bg-surface-container-lowest px-unit-md py-1 rounded-lg text-primary font-label-md text-label-md font-bold">
+<span class="inline-block w-2 h-2 rounded-full bg-on-tertiary-container animate-pulse"></span>
+<span>2 Discrepancies Requiring Adjudication</span>
+</div>
+</div>
+<!-- Field Resolution 1: Marathi Name Spelling -->
+<div class="bg-surface-container-low rounded-xl p-unit-md mb-unit-md">
+<div class="flex items-center justify-between mb-unit-sm">
+<div class="flex items-center gap-unit-xs">
+<span class="font-title-md text-title-md text-primary font-bold">Field: Primary Titleholder / Owner Name (खातेदाराचे नाव)</span>
+<span class="bg-surface-container-high text-primary font-label-sm text-label-sm px-2 py-0.5 rounded font-bold">Khasra 341/2B-A</span>
+</div>
+<div class="flex items-center gap-1 font-label-sm text-label-sm text-on-tertiary-container bg-surface-container-highest px-2 py-0.5 rounded font-bold">
+<span class="material-symbols-outlined text-sm">warning</span>
+              Confidence: 81.2% (Threshold &gt; 95.0%)
+            </div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-unit-sm mb-unit-md">
+<!-- Source A: AI OCR -->
+<div class="bg-surface-container-lowest p-unit-sm rounded-lg shadow-sm">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm mb-1">
+<span class="flex items-center gap-1 font-bold"><span class="material-symbols-outlined text-xs text-secondary">memory</span> AI OCR Extraction</span>
+<span class="font-tabular-data text-tabular-data text-on-tertiary-container font-semibold">81.2%</span>
+</div>
+<div class="p-unit-xs bg-surface-container-low rounded font-title-md text-title-md text-primary font-bold font-headline-md my-1">
+                सुभाषराव एकनाथ पाटिल
+              </div>
+<div class="font-body-sm text-body-sm text-on-surface-variant text-xs">
+                Extracted from 1988 Gazette physical photostat scan. Character ambiguity at suffix: 'ल' vs 'ळ'.
+              </div>
+</div>
+<!-- Source B: Legacy Archive -->
+<div class="bg-surface-container-lowest p-unit-sm rounded-lg shadow-sm">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm mb-1">
+<span class="flex items-center gap-1 font-bold"><span class="material-symbols-outlined text-xs">menu_book</span> Revenue Archive (1975-2005)</span>
+<span class="font-tabular-data text-tabular-data text-primary font-semibold">Indexed</span>
+</div>
+<div class="p-unit-xs bg-surface-container-low rounded font-title-md text-title-md text-on-surface font-bold font-headline-md my-1">
+                सुभाष एकनाथ पाटील
+              </div>
+<div class="font-body-sm text-body-sm text-on-surface-variant text-xs">
+                Handwritten Modi/Devanagari register volume 18, page 92, entry line 14.
+              </div>
+</div>
+<!-- Source C: SRO Registry API -->
+<div class="bg-surface-container-lowest p-unit-sm rounded-lg shadow-sm">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm mb-1">
+<span class="flex items-center gap-1 font-bold text-secondary"><span class="material-symbols-outlined text-xs">verified_user</span> SRO Registry API (IGR)</span>
+<span class="font-tabular-data text-tabular-data text-secondary font-bold">Canonical 99.8%</span>
+</div>
+<div class="p-unit-xs bg-surface-container-high rounded font-title-md text-title-md text-primary font-bold font-headline-md my-1">
+                सुभाष एकनाथ पाटील
+              </div>
+<div class="font-body-sm text-body-sm text-on-surface-variant text-xs">
+                Direct PAN/Aadhaar-linked Deed Doc No: PNV/10943/2004 (Registered 14-Oct-2004).
+              </div>
+</div>
+</div>
+<div class="flex flex-wrap items-center justify-between gap-unit-sm pt-unit-xs">
+<div class="flex items-center gap-unit-xs text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-base text-secondary">info</span>
+<span>Recommended Action: SRO Registry spelling matches legal succession certificate #MH-2005-441.</span>
+</div>
+<div class="flex items-center gap-unit-xs">
+<button class="bg-secondary text-on-secondary hover:bg-primary transition-colors font-title-md text-title-md px-unit-md py-1.5 rounded flex items-center gap-unit-xs shadow-sm" onclick="this.innerHTML='&lt;span class=\'material-symbols-outlined text-base\'&gt;check_circle&lt;/span&gt; Reconciled to Canonical'; this.classList.remove('bg-secondary'); this.classList.add('bg-primary');" type="button">
+<span class="material-symbols-outlined text-base">spellcheck</span>
+<span>Accept Registry Canonical Name ('पाटील')</span>
+</button>
+<button class="bg-surface-container hover:bg-surface-container-high text-primary font-title-md text-title-md px-unit-sm py-1.5 rounded transition-colors" title="Custom Manual Text Input" type="button">
+                Edit Manually
+              </button>
+</div>
+</div>
+</div>
+<!-- Field Resolution 2: Khata Number & Crop Zoom -->
+<div class="bg-surface-container-low rounded-xl p-unit-md">
+<div class="flex items-center justify-between mb-unit-sm">
+<div class="flex items-center gap-unit-xs">
+<span class="font-title-md text-title-md text-primary font-bold">Field: Khata / Ledger Index Number (खाते क्रमांक)</span>
+<span class="bg-surface-container-high text-primary font-label-sm text-label-sm px-2 py-0.5 rounded font-bold">Survey Plot 341</span>
+</div>
+<div class="flex items-center gap-1 font-label-sm text-label-sm text-on-tertiary-container bg-surface-container-highest px-2 py-0.5 rounded font-bold">
+<span class="material-symbols-outlined text-sm">crop</span>
+              Scan Artifact Flag
+            </div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-unit-md items-center">
+<!-- Inspection Zoom Crop Graphic -->
+<div class="lg:col-span-6 bg-surface-container-lowest p-unit-sm rounded-lg shadow-sm">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm mb-unit-xs">
+<span class="font-bold flex items-center gap-1"><span class="material-symbols-outlined text-xs">zoom_in</span> Optical Deep-Zoom [800 DPI Treasury Scan]</span>
+<span class="font-tabular-data text-tabular-data text-xs">Spectral Filter: Infrared</span>
+</div>
+<div class="relative bg-primary-container p-unit-sm rounded overflow-hidden flex flex-col items-center justify-center">
+<!-- SVG Document Crop Simulation -->
+<svg class="w-full h-28 bg-surface-container-low rounded shadow-inner" viewbox="0 0 320 120" xmlns="http://www.w3.org/2000/svg">
+<!-- Aged parchment background texture -->
+<rect fill="#f8f6ee" height="120" width="320"></rect>
+<line stroke="#d5ceb8" stroke-dasharray="2 2" stroke-width="1" x1="20" x2="300" y1="20" y2="20"></line>
+<line stroke="#d5ceb8" stroke-dasharray="2 2" stroke-width="1" x1="20" x2="300" y1="100" y2="100"></line>
+<!-- Blurred pre-printed ledger headers -->
+<text fill="#888173" font-family="Plus Jakarta Sans" font-size="9" font-weight="600" x="30" y="38">खाते क्र.</text>
+<text fill="#888173" font-family="Plus Jakarta Sans" font-size="9" font-weight="600" x="140" y="38">क्षेत्र (हे.आर.)</text>
+<text fill="#888173" font-family="Plus Jakarta Sans" font-size="9" font-weight="600" x="240" y="38">आकार (रु.पै.)</text>
+<!-- Real scanned handwritten numbers with a faint water ink smear -->
+<path d="M 32 78 C 36 60, 48 55, 54 66 C 58 74, 40 85, 62 86" fill="none" stroke="#1d2838" stroke-linecap="round" stroke-width="3.5"></path>
+<path d="M 72 58 L 72 86" fill="none" stroke="#1d2838" stroke-linecap="round" stroke-width="3.5"></path>
+<path d="M 82 72 L 95 56 L 95 86" fill="none" stroke="#1d2838" stroke-linecap="round" stroke-width="3.5"></path>
+<!-- Accidental vertical ink blot mistaken by OCR for "/A" -->
+<path d="M 103 62 C 105 64, 108 80, 106 84" fill="none" opacity="0.65" stroke="#3b4859" stroke-dasharray="1 1" stroke-width="1.8"></path>
+<circle cx="106" cy="62" fill="none" r="7" stroke="#ba1a1a" stroke-dasharray="2 2" stroke-width="1.5"></circle>
+<!-- Bounding box highlight -->
+<rect fill="none" height="44" rx="2" stroke="#1d4ed8" stroke-width="1.5" width="90" x="25" y="48"></rect>
+<text fill="#1d4ed8" font-family="Inter" font-size="8" font-weight="700" x="30" y="55">AI Bounding Box</text>
+</svg>
+<div class="w-full flex items-center justify-between text-surface-variant font-label-sm text-label-sm mt-1.5 px-1">
+<span>Bounding Box: [X: 420, Y: 118, W: 180, H: 92]</span>
+<span class="text-error-container font-semibold">Identified Fold Artifact</span>
+</div>
+</div>
+</div>
+<!-- Comparison Breakdown & Action -->
+<div class="lg:col-span-6 flex flex-col justify-between h-full">
+<div class="space-y-unit-xs mb-unit-sm">
+<div class="flex items-center justify-between bg-surface-container-lowest p-unit-xs px-unit-sm rounded shadow-sm">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Model Raw Token:</span>
+<span class="font-tabular-data text-tabular-data font-bold text-error bg-surface-container px-2 py-0.5 rounded">214/A</span>
+</div>
+<div class="flex items-center justify-between bg-surface-container-lowest p-unit-xs px-unit-sm rounded shadow-sm">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Revenue Master Khata Ledger:</span>
+<span class="font-tabular-data text-tabular-data font-bold text-secondary bg-surface-container px-2 py-0.5 rounded">214 (Pure Numeric)</span>
+</div>
+<div class="flex items-center justify-between bg-surface-container-lowest p-unit-xs px-unit-sm rounded shadow-sm">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Tehsil Haveli Gazette Rule:</span>
+<span class="font-tabular-data text-tabular-data font-medium text-primary">Khata codes strictly non-alphanumeric</span>
+</div>
+</div>
+<div class="flex items-center gap-unit-xs pt-unit-xs">
+<button class="w-full bg-primary hover:bg-primary-container text-on-primary transition-colors font-title-md text-title-md py-2 rounded flex items-center justify-center gap-unit-xs shadow-sm" onclick="this.innerHTML='&lt;span class=\'material-symbols-outlined text-base\'&gt;check_circle&lt;/span&gt; Approved as 214'; this.disabled=true;" type="button">
+<span class="material-symbols-outlined text-base">check</span>
+<span>Confirm Pure Numeric '214' (Suppress '/A' Artifact)</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Real-Time Cadastral Geometry Overlay Preview -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-unit-lg">
+<div class="flex items-center justify-between mb-unit-md">
+<div class="flex items-center gap-unit-xs">
+<span class="material-symbols-outlined text-secondary text-xl">map</span>
+<h3 class="font-title-md text-title-md text-primary font-bold">Cadastral Vector Vectorization &amp; Ground Parcel Overlay</h3>
+</div>
+<div class="flex items-center gap-unit-xs font-label-sm text-label-sm">
+<span class="flex items-center gap-1 text-on-surface-variant"><span class="w-2.5 h-2.5 bg-secondary rounded-sm"></span> Gat 341/2B (Active)</span>
+<span class="flex items-center gap-1 text-on-surface-variant ml-2"><span class="w-2.5 h-2.5 bg-outline-variant rounded-sm"></span> Adjoining Plots</span>
+</div>
+</div>
+<div class="relative w-full h-72 bg-surface-container-high rounded-xl overflow-hidden shadow-inner flex items-center justify-center">
+<div class="absolute inset-0 w-full h-full bg-cover bg-center" data-alt="High resolution satellite view of rural agricultural fields in Pune district Maharashtra, showing neatly divided parcel boundaries and small irrigation canals under clear bright daylight." data-location="Haveli, Pune, Maharashtra, India" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDHVvvsNbridV8pv40Iu8SpQmYZkAUDrhTII5ZzVhr34zvGRjtEPVMMlRU9mL16p1Jfk9EksJEZ8KriaZ38PS8RDUIebrpEo-UrLMhEDe91_GQXOsx5dp9XAakq4llKyC3OpJNw0lARwAOhdcm6ZIum2Y4kVGrMvWzKv4wp47JIM8WDyHnMw376Tw-R00rvCZ5TyamPBZACdq7Xirxe6RrkclgyCS91Od0BLWxthj3EntpYNvccAlY')"></div>
+<!-- Vector Cadastral Overlay SVG -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" preserveaspectratio="none" viewbox="0 0 800 300">
+<!-- Neighboring Plots -->
+<polygon fill="none" opacity="0.75" points="40,20 220,15 240,140 30,130" stroke="#74777f" stroke-dasharray="4 2" stroke-width="1.5"></polygon>
+<polygon fill="none" opacity="0.75" points="220,15 460,30 430,150 240,140" stroke="#74777f" stroke-dasharray="4 2" stroke-width="1.5"></polygon>
+<polygon fill="none" opacity="0.75" points="430,150 720,160 690,285 390,270" stroke="#74777f" stroke-dasharray="4 2" stroke-width="1.5"></polygon>
+<!-- Active Verified Parcel: Gat 341/2B -->
+<polygon fill="#1d4ed8" fill-opacity="0.25" points="240,140 430,150 390,270 210,250" stroke="#1d4ed8" stroke-width="3"></polygon>
+<!-- Vertex Pins -->
+<circle cx="240" cy="140" fill="#ffffff" r="4" stroke="#1d4ed8" stroke-width="2"></circle>
+<circle cx="430" cy="150" fill="#ffffff" r="4" stroke="#1d4ed8" stroke-width="2"></circle>
+<circle cx="390" cy="270" fill="#ffffff" r="4" stroke="#1d4ed8" stroke-width="2"></circle>
+<circle cx="210" cy="250" fill="#ffffff" r="4" stroke="#1d4ed8" stroke-width="2"></circle>
+<!-- Center Label -->
+<rect fill="#00142f" fill-opacity="0.85" height="26" rx="4" width="105" x="270" y="190"></rect>
+<text fill="#ffffff" font-family="Plus Jakarta Sans" font-size="11" font-weight="700" text-anchor="middle" x="322" y="207">Gat 341/2B • 1.415 Ha</text>
+</svg>
+<!-- Top-Right GIS Tools Floating Pill -->
+<div class="absolute top-unit-sm right-unit-sm flex items-center gap-1 bg-surface-container-lowest/90 backdrop-blur px-unit-sm py-1 rounded-lg shadow-sm">
+<button class="p-1 text-primary hover:bg-surface-container rounded" title="Recalculate Area" type="button"><span class="material-symbols-outlined text-base">square_foot</span></button>
+<button class="p-1 text-primary hover:bg-surface-container rounded" title="Toggle Orthophoto" type="button"><span class="material-symbols-outlined text-base">layers</span></button>
+<button class="p-1 text-primary hover:bg-surface-container rounded" title="Survey Benchmark Nodes" type="button"><span class="material-symbols-outlined text-base">pin_drop</span></button>
+<div class="h-4 w-px bg-outline-variant/50 mx-1"></div>
+<span class="font-tabular-data text-tabular-data text-xs font-bold text-primary">EPSG: 4326 (WGS84)</span>
+</div>
+<!-- Bottom Left Coordinates Pill -->
+<div class="absolute bottom-unit-sm left-unit-sm bg-primary text-on-primary font-tabular-data text-tabular-data text-xs px-2.5 py-1 rounded shadow">
+            Lat: 18°35'12.4" N | Long: 73°58'48.9" E | Accuracy: ±0.04m (RTK-DGPS)
+          </div>
+</div>
+</div>
+</div>
+<!-- Right 4 Columns: Anomaly Risk Score & Immutable Provenance Trail -->
+<div class="xl:col-span-4 flex flex-col gap-unit-md">
+<!-- Anomaly & Fraud Risk Scoring Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-unit-lg">
+<div class="flex items-center justify-between mb-unit-md">
+<div class="flex items-center gap-unit-xs">
+<span class="material-symbols-outlined text-secondary text-xl">shield</span>
+<h3 class="font-title-md text-title-md text-primary font-bold">Fraud &amp; Integrity Risk Matrix</h3>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-container text-secondary font-bold px-2 py-0.5 rounded">STQC v2.4</span>
+</div>
+<!-- Metric Speedometer/Progress Ring Box -->
+<div class="bg-surface-container-low p-unit-md rounded-xl flex items-center justify-between mb-unit-md">
+<div>
+<div class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Composite Risk Index</div>
+<div class="flex items-baseline gap-unit-xs mt-1">
+<span class="font-display-xl text-display-xl text-primary font-bold leading-none">14</span>
+<span class="font-title-md text-title-md text-on-surface-variant font-semibold">/ 100</span>
+</div>
+<div class="inline-flex items-center gap-1 mt-unit-xs text-secondary font-label-md text-label-md font-bold">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+              LOW RISK (Eligible for Auto-Endorsement)
+            </div>
+</div>
+<!-- Inline Radial Gauge SVG -->
+<div class="relative w-20 h-20">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<path class="text-surface-variant" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3.5"></path>
+<path class="text-secondary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="14, 100" stroke-linecap="round" stroke-width="3.5"></path>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center font-tabular-data text-tabular-data font-bold text-primary">
+              98.6%
+            </div>
+</div>
+</div>
+<!-- Detailed Forensic Signals -->
+<div class="space-y-unit-sm mb-unit-md">
+<div class="flex items-start justify-between bg-surface-container-lowest p-unit-sm rounded-lg shadow-sm">
+<div class="flex items-start gap-unit-xs">
+<span class="material-symbols-outlined text-secondary text-base mt-0.5">filter_center_focus</span>
+<div>
+<div class="font-title-md text-title-md text-primary font-semibold text-xs">Spectrophotometry Scan Analysis</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant text-xs">No chemical erasures or paper fiber gouging detected.</div>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold">CLEAN</span>
+</div>
+<div class="flex items-start justify-between bg-surface-container-lowest p-unit-sm rounded-lg shadow-sm">
+<div class="flex items-start gap-unit-xs">
+<span class="material-symbols-outlined text-secondary text-base mt-0.5">grid_guides</span>
+<div>
+<div class="font-title-md text-title-md text-primary font-semibold text-xs">Digital Collage &amp; Splicing Inspection</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant text-xs">Pixel error level analysis (ELA) shows uniform compression.</div>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold">0.00 ELA</span>
+</div>
+<div class="flex items-start justify-between bg-surface-container-lowest p-unit-sm rounded-lg shadow-sm">
+<div class="flex items-start gap-unit-xs">
+<span class="material-symbols-outlined text-on-tertiary-container text-base mt-0.5">history_toggle_off</span>
+<div>
+<div class="font-title-md text-title-md text-primary font-semibold text-xs">Encumbrance &amp; Mortgage Cross-Check</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant text-xs">Bank charge lien #BOI-4491 liquidated on 12-Jan-2022.</div>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-tertiary-container font-bold">VERIFIED</span>
+</div>
+</div>
+<!-- SHA-256 Ledger Provenance Hash -->
+<div class="bg-surface-container-low p-unit-sm rounded-lg flex items-center justify-between font-tabular-data text-tabular-data text-xs">
+<div class="flex items-center gap-unit-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">fingerprint</span>
+<span class="truncate max-w-[200px]">SHA256: 7f8b9e11c...4a2b90ce</span>
+</div>
+<button class="text-secondary font-bold hover:underline" title="Copy Hash" type="button">Copy</button>
+</div>
+</div>
+<!-- Immutable Audit Trail & Provenance Log -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-unit-lg flex-1 flex flex-col">
+<div class="flex items-center justify-between mb-unit-md">
+<div class="flex items-center gap-unit-xs">
+<span class="material-symbols-outlined text-secondary text-xl">account_tree</span>
+<h3 class="font-title-md text-title-md text-primary font-bold">Provenance &amp; Lifecycle Audit</h3>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">6 Events Recorded</span>
+</div>
+<!-- Vertical Stepper Timeline -->
+<div class="relative pl-6 space-y-unit-md before:absolute before:left-2 before:top-2 before:bottom-2 before:w-0.5 before:bg-surface-container-highest flex-1">
+<!-- Item 1 -->
+<div class="relative">
+<div class="absolute -left-6 top-1 w-4 h-4 rounded-full bg-secondary flex items-center justify-center text-on-secondary text-xs">
+<span class="material-symbols-outlined text-xs">done</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-title-md text-title-md text-primary font-bold text-xs">Record Ingestion &amp; Registration</span>
+<span class="font-tabular-data text-tabular-data text-on-surface-variant text-xs">14:18 IST</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-xs">Source: Sub-District Treasury Registry Node #04</p>
+</div>
+<!-- Item 2 -->
+<div class="relative">
+<div class="absolute -left-6 top-1 w-4 h-4 rounded-full bg-secondary flex items-center justify-center text-on-secondary text-xs">
+<span class="material-symbols-outlined text-xs">done</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-title-md text-title-md text-primary font-bold text-xs">Calibrated Optical Scan</span>
+<span class="font-tabular-data text-tabular-data text-on-surface-variant text-xs">14:21 IST</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-xs">800 DPI Treasury Flatbed Scanner (Device ID: #SC-HAV-12)</p>
+</div>
+<!-- Item 3 -->
+<div class="relative">
+<div class="absolute -left-6 top-1 w-4 h-4 rounded-full bg-secondary flex items-center justify-center text-on-secondary text-xs">
+<span class="material-symbols-outlined text-xs">done</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-title-md text-title-md text-primary font-bold text-xs">OCR Neural Extraction Run</span>
+<span class="font-tabular-data text-tabular-data text-on-surface-variant text-xs">14:24 IST</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-xs">BhoomiVision-v4 Transformer Pipeline (Confidence: 94.2% mean)</p>
+</div>
+<!-- Item 4 -->
+<div class="relative">
+<div class="absolute -left-6 top-1 w-4 h-4 rounded-full bg-secondary flex items-center justify-center text-on-secondary text-xs">
+<span class="material-symbols-outlined text-xs">done</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-title-md text-title-md text-primary font-bold text-xs">Automated Business Rules Engine</span>
+<span class="font-tabular-data text-tabular-data text-on-surface-variant text-xs">14:26 IST</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-xs">4/4 Pillars checked. 1 Warning flagged on Mutation timestamp.</p>
+</div>
+<!-- Item 5: Current Stage -->
+<div class="relative">
+<div class="absolute -left-6 top-1 w-4 h-4 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary text-xs ring-4 ring-secondary-fixed">
+<span class="material-symbols-outlined text-xs">edit</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-title-md text-title-md text-secondary font-bold text-xs">Tehsildar In-Loop Adjudication</span>
+<span class="font-tabular-data text-tabular-data text-secondary font-bold text-xs">IN PROGRESS</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-xs">Assigned to: Dr. R. K. Sharma, IAS (Director General)</p>
+</div>
+<!-- Item 6: Pending -->
+<div class="relative opacity-60">
+<div class="absolute -left-6 top-1 w-4 h-4 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant text-xs">
+<span class="material-symbols-outlined text-xs">lock</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-title-md text-title-md text-on-surface-variant font-medium text-xs">Final Digital Sign-off &amp; RoR Issue</span>
+<span class="font-tabular-data text-tabular-data text-on-surface-variant text-xs">Pending Decision</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-xs">Awaiting Officer Action below</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Verification Officer Decision Bar (Sticky Action Footer) -->
+<div class="bg-primary text-on-primary rounded-xl shadow-lg p-unit-lg flex flex-col lg:flex-row items-center justify-between gap-unit-md">
+<div class="flex items-center gap-unit-md">
+<div class="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center text-on-secondary shadow-sm">
+<span class="material-symbols-outlined text-2xl">verified</span>
+</div>
+<div>
+<div class="flex items-center gap-unit-xs">
+<h4 class="font-headline-sm text-headline-sm text-surface-bright font-bold">Verification Officer Adjudication Decision</h4>
+<span class="font-label-sm text-label-sm bg-surface-container-highest/20 text-surface-bright px-2 py-0.5 rounded font-bold">NIC e-Sign Ready</span>
+</div>
+<p class="font-body-sm text-body-sm text-surface-variant mt-0.5">
+          Action commits this record immutably to the State Central Jamabandi Grid with Section 65B Indian Evidence Act certification.
+        </p>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-unit-sm w-full lg:w-auto justify-end">
+<!-- Secondary Action: Request Re-scan -->
+<button class="bg-primary-container hover:bg-surface-variant/20 text-surface-bright font-title-md text-title-md px-unit-md py-2.5 rounded-lg flex items-center gap-unit-xs transition-colors shadow-sm" onclick="alert('Defect memo logged: Requested 1200 DPI archival re-scan from Pune District Treasury.');" type="button">
+<span class="material-symbols-outlined text-base">document_scanner</span>
+<span>Request High-Res Re-scan</span>
+</button>
+<!-- Destructive Action: Reject with Defect Memo -->
+<button class="bg-error hover:bg-on-error-container text-on-error font-title-md text-title-md px-unit-md py-2.5 rounded-lg flex items-center gap-unit-xs transition-colors shadow-sm" onclick="alert('Record returned to Sub-Divisional Magistrate dispute tribunal with auto-generated defect memo #DF-44021.');" type="button">
+<span class="material-symbols-outlined text-base">block</span>
+<span>Reject with Defect Memo</span>
+</button>
+<!-- Primary Action: Accept & Sign -->
+<button class="bg-secondary hover:bg-secondary-container text-on-secondary font-title-md text-title-md px-unit-lg py-2.5 rounded-lg flex items-center gap-unit-xs transition-all shadow-md hover:shadow-lg font-bold" onclick="this.innerHTML='&lt;span class=\'material-symbols-outlined text-base animate-spin\'&gt;progress_activity&lt;/span&gt; Signing with DSC...'; setTimeout(()=&gt;{ this.innerHTML='&lt;span class=\'material-symbols-outlined text-base\'&gt;verified&lt;/span&gt; Digitally Endorsed'; this.classList.remove('bg-secondary'); this.classList.add('bg-primary-container'); }, 1400);" type="button">
+<span class="material-symbols-outlined text-base">assignment_turned_in</span>
+<span>Accept with Edits &amp; Issue Digital Sign</span>
+</button>
+</div>
+</div>
+</div></div></main><footer class="w-full bg-surface-container-low py-unit-xl mt-auto"><div class="max-w-[1680px] mx-auto px-margin-screen flex flex-col md:flex-row items-center justify-between gap-unit-md"><div class="flex flex-col items-center md:items-start text-center md:text-left gap-1"><div class="flex items-center gap-unit-xs font-title-md text-title-md text-primary font-bold"><span class="material-symbols-outlined text-secondary text-lg">verified</span>Designed &amp; Maintained by National Informatics Centre (NIC)</div><p class="font-body-sm text-body-sm text-on-surface-variant max-w-2xl">In collaboration with Department of Land Resources (DoLR), Ministry of Rural Development, Government of India. Under Digital India Land Records Modernization Programme (DILRMP).</p></div><div class="flex flex-col items-center md:items-end gap-1"><div class="flex items-center gap-unit-sm font-label-md text-label-md text-on-surface-variant"><span class="px-2 py-0.5 rounded bg-surface-container font-medium">ISO 27001:2022 Certified</span><span class="px-2 py-0.5 rounded bg-surface-container font-medium">STQC Audited</span><span class="px-2 py-0.5 rounded bg-surface-container font-medium">CMMI Level 5</span></div><div class="font-tabular-data text-tabular-data text-on-surface-variant flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>National Node Sync Active • IST Last Sync: 2025-02-28 17:42:09</div></div></div></footer></body></html>
