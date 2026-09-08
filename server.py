@@ -46,44 +46,72 @@ class LandRecordAPIHandler(BaseHTTPRequestHandler):
         self._set_cors_headers()
         self.end_headers()
 
-    def do_GET(self):
-        parsed = urllib.parse.urlparse(self.path)
-        path = parsed.path
-        query = urllib.parse.parse_qs(parsed.query)
+   def do_GET(self):
+    parsed = urllib.parse.urlparse(self.path)
+    path = parsed.path
+    query = urllib.parse.parse_qs(parsed.query)
 
-        # -----------------------------------------------------------------
-        # API Endpoints
-        # -----------------------------------------------------------------
-        if path.startswith("/api/"):
-            if path == "/api/kpis":
-                stats = db.get_kpis()
-                self._send_json({"success": True, "data": stats})
-                return
+    # ----------------------------------------------------
+    # 1. API Endpoints
+    # ----------------------------------------------------
+    if path.startswith("/api/"):
+        if path == "/api/kpis":
+            stats = db.get_kpis()
+            self._send_json({"success": True, "data": stats})
+            return
+        # Keep any other existing API endpoints here...
+        self._send_json({"success": False, "error": "Unknown API endpoint"}, 404)
+        return
 
-            elif path == "/api/records":
-                q = query.get("q", [None])[0]
-                state = query.get("state", [None])[0]
-                status = query.get("status", [None])[0]
-                district = query.get("district", [None])[0]
-                records = db.search_records(query=q, state=state, status=status, district=district)
-                self._send_json({"success": True, "count": len(records), "data": records})
-                return
+    # ----------------------------------------------------
+    # 2. Static File & Page Serving (All HTML/Images/CSS)
+    # ----------------------------------------------------
+    # Strip leading slash to get relative local filename
+    req_file = path.lstrip('/')
 
-            elif path.startswith("/api/records/"):
-                record_id = path.replace("/api/records/", "").strip()
-                record = db.get_record_by_id(record_id)
-                if record:
-                    boxes = ocr_engine.generate_bounding_boxes(record)
-                    val_res = validation_engine.validate_record(record, db.get_all_records())
-                    self._send_json({
-                        "success": True,
-                        "data": record,
-                        "boundingBoxes": boxes,
-                        "validation": val_res
-                    })
+    # Default root URL "/" to index.html or code.html
+    if not req_file:
+        if os.path.exists('index.html'):
+            req_file = 'index.html'
+        elif os.path.exists('code.html'):
+            req_file = 'code.html'
+
+    # Security check: prevent directory traversal
+    safe_path = os.path.normpath(req_file)
+    if safe_path.startswith("..") or os.path.isabs(safe_path):
+        self.send_error(403, "Forbidden")
+        return
+
+    # Serve the file if it exists locally
+    if os.path.exists(safe_path) and os.path.isfile(safe_path):
+        try:
+            mime_type, _ = mimetypes.guess_type(safe_path)
+            if not mime_type:
+                if safe_path.endswith('.html'):
+                    mime_type = 'text/html; charset=utf-8'
+                elif safe_path.endswith('.png'):
+                    mime_type = 'image/png'
+                elif safe_path.endswith('.css'):
+                    mime_type = 'text/css'
+                elif safe_path.endswith('.js'):
+                    mime_type = 'application/javascript'
                 else:
-                    self._send_json({"success": False, "error": "Record not found"}, 404)
-                return
+                    mime_type = 'application/octet-stream'
+
+            with open(safe_path, 'rb') as f:
+                content = f.read()
+
+            self.send_response(200)
+            self.send_header('Content-Type', mime_type)
+            self.send_header('Content-Length', str(len(content)))
+            self.end_headers()
+            self.wfile.write(content)
+            return
+        except Exception as e:
+            self.send_error(500, f"Error loading file: {e}")
+            return
+
+    self.send_error(404, f"File not found: {path}")
 
             elif path == "/api/cadastral/geojson":
                 geojson = cadastral_engine.get_all_parcels()
