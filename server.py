@@ -47,7 +47,7 @@ class LandRecordAPIHandler(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_GET(self):
-        if self.path == '/' or self.path == '/index.html':
+     if self.path == '/' or self.path == '/index.html':
         try:
             filename = 'index.html' if os.path.exists('index.html') else 'index.html'
             with open(filename, 'rb') as f:
