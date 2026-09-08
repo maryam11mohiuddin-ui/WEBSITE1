@@ -91,7 +91,7 @@ class LandRecordAPIHandler(BaseHTTPRequestHandler):
     
                     elif path.startswith("/api/records/"):
                         record_id = path.replace("/api/records/", "").strip()
-                          record = db.get_record_by_id(record_id)
+                        record = db.get_record_by_id(record_id)
                         if record:
                             boxes = ocr_engine.generate_bounding_boxes(record)
                             val_res = validation_engine.validate_record(record, db.get_all_records())
