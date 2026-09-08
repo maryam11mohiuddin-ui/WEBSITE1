@@ -7,10 +7,12 @@ Validation Rule Engine, Cadastral GIS, Active Learning, and Audit Tracking.
 import os
 import sys
 import json
+import uuid
+import socket
+import datetime
 import mimetypes
 import urllib.parse
-from http.server import HTTPServer, BaseHTTPRequestHandler
-import datetime
+from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
 
 # Import backend modules
 from database import db, SCOPE_OF_STUDY_DATA
@@ -27,6 +29,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FRONTEND_DIR = os.path.join(BASE_DIR, "frontend")
 
 class LandRecordAPIHandler(BaseHTTPRequestHandler):
+    def log_message(self, format, *args):
+        # Clean background logging
+        pass
+
     def _set_cors_headers(self):
         self.send_header("Access-Control-Allow-Origin", "*")
         self.send_header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
@@ -46,72 +52,116 @@ class LandRecordAPIHandler(BaseHTTPRequestHandler):
         self._set_cors_headers()
         self.end_headers()
 
- def do_GET(self):
-    parsed = urllib.parse.urlparse(self.path)
-    path = parsed.path
-    query = urllib.parse.parse_qs(parsed.query)
+    def do_GET(self):
+        parsed = urllib.parse.urlparse(self.path)
+        path = parsed.path
+        query = urllib.parse.parse_qs(parsed.query)
 
-    # ----------------------------------------------------
-    # 1. API Endpoints
-    # ----------------------------------------------------
-    if path.startswith("/api/"):
-        if path == "/api/kpis":
-            stats = db.get_kpis()
-            self._send_json({"success": True, "data": stats})
-            return
-        # Keep any other existing API endpoints here...
-        self._send_json({"success": False, "error": "Unknown API endpoint"}, 404)
-        return
+        # -----------------------------------------------------------------
+        # API Endpoints
+        # -----------------------------------------------------------------
+        if path.startswith("/api/"):
+            if path == "/api/kpis":
+                stats = db.get_kpis()
+                self._send_json({"success": True, "data": stats})
+                return
 
-    # ----------------------------------------------------
-    # 2. Static File & Page Serving (All HTML/Images/CSS)
-    # ----------------------------------------------------
-    # Strip leading slash to get relative local filename
-    req_file = path.lstrip('/')
+            elif path == "/api/records":
+                q = query.get("q", [None])[0]
+                state = query.get("state", [None])[0]
+                status = query.get("status", [None])[0]
+                district = query.get("district", [None])[0]
+                records = db.search_records(query=q, state=state, status=status, district=district)
+                self._send_json({"success": True, "count": len(records), "data": records})
+                return
 
-    # Default root URL "/" to index.html or code.html
-    if not req_file:
-        if os.path.exists('index.html'):
-            req_file = 'index.html'
-        elif os.path.exists('code.html'):
-            req_file = 'code.html'
-
-    # Security check: prevent directory traversal
-    safe_path = os.path.normpath(req_file)
-    if safe_path.startswith("..") or os.path.isabs(safe_path):
-        self.send_error(403, "Forbidden")
-        return
-
-    # Serve the file if it exists locally
-    if os.path.exists(safe_path) and os.path.isfile(safe_path):
-        try:
-            mime_type, _ = mimetypes.guess_type(safe_path)
-            if not mime_type:
-                if safe_path.endswith('.html'):
-                    mime_type = 'text/html; charset=utf-8'
-                elif safe_path.endswith('.png'):
-                    mime_type = 'image/png'
-                elif safe_path.endswith('.css'):
-                    mime_type = 'text/css'
-                elif safe_path.endswith('.js'):
-                    mime_type = 'application/javascript'
+            elif path.startswith("/api/records/"):
+                record_id = path.replace("/api/records/", "").strip()
+                record = db.get_record_by_id(record_id)
+                if record:
+                    boxes = ocr_engine.generate_bounding_boxes(record)
+                    val_res = validation_engine.validate_record(record, db.get_all_records())
+                    self._send_json({
+                        "success": True,
+                        "data": record,
+                        "boundingBoxes": boxes,
+                        "validation": val_res
+                    })
                 else:
-                    mime_type = 'application/octet-stream'
+                    self._send_json({"success": False, "error": "Record not found"}, 404)
+                return
 
-            with open(safe_path, 'rb') as f:
+            elif path == "/api/cadastral/geojson":
+                geojson = cadastral_engine.get_all_parcels()
+                self._send_json({"success": True, "data": geojson})
+                return
+
+            elif path.startswith("/api/cadastral/parcel/"):
+                parcel_id = path.replace("/api/cadastral/parcel/", "").strip()
+                parcel = cadastral_engine.get_parcel_by_id(parcel_id)
+                if parcel:
+                    self._send_json({"success": True, "data": parcel})
+                else:
+                    self._send_json({"success": False, "error": "Parcel not found"}, 404)
+                return
+
+            elif path == "/api/active-learning/metrics":
+                data = active_learning_engine.get_metrics()
+                self._send_json({"success": True, "data": data})
+                return
+
+            elif path == "/api/audit/logs":
+                logs = db.get_audit_logs(60)
+                self._send_json({"success": True, "count": len(logs), "data": logs})
+                return
+
+            elif path == "/api/scope-of-study":
+                self._send_json({"success": True, "data": SCOPE_OF_STUDY_DATA})
+                return
+
+            else:
+                self._send_json({"success": False, "error": "Unknown API endpoint"}, 404)
+                return
+
+        # -----------------------------------------------------------------
+        # Static Frontend File Serving
+        # -----------------------------------------------------------------
+        req_path = path.lstrip("/")
+        if not req_path or req_path == "index.html":
+            file_path = os.path.join(FRONTEND_DIR, "index.html")
+        else:
+            file_path = os.path.join(FRONTEND_DIR, req_path)
+
+        if not os.path.exists(file_path) or os.path.isdir(file_path):
+            file_path = os.path.join(FRONTEND_DIR, "index.html")
+
+        if os.path.exists(file_path):
+            mime_type, _ = mimetypes.guess_type(file_path)
+            if not mime_type:
+                if file_path.endswith(".js"):
+                    mime_type = "application/javascript"
+                elif file_path.endswith(".css"):
+                    mime_type = "text/css"
+                elif file_path.endswith(".json"):
+                    mime_type = "application/json"
+                elif file_path.endswith(".svg"):
+                    mime_type = "image/svg+xml"
+                else:
+                    mime_type = "text/html"
+
+            with open(file_path, "rb") as f:
                 content = f.read()
 
             self.send_response(200)
-            self.send_header('Content-Type', mime_type)
-            self.send_header('Content-Length', str(len(content)))
+            self.send_header("Content-Type", f"{mime_type}; charset=utf-8" if "text" in mime_type or "javascript" in mime_type else mime_type)
+            self.send_header("Content-Length", str(len(content)))
+            self._set_cors_headers()
             self.end_headers()
             self.wfile.write(content)
-            return
-        except Exception as e:
-            self.send_error(500, f"Error loading file: {e}")
-            return
-
-    self.send_error(404, f"File not found: {path}")
+        else:
+            self.send_response(404)
+            self.end_headers()
+            self.wfile.write(b"404 Not Found")
 
     def do_POST(self):
         parsed = urllib.parse.urlparse(self.path)
@@ -237,13 +287,28 @@ class LandRecordAPIHandler(BaseHTTPRequestHandler):
         else:
             self._send_json({"success": False, "error": "Unknown POST endpoint"}, 404)
 
-def run_server(port=8080):
-    server_address = ("", port)
-    httpd = HTTPServer(server_address, LandRecordAPIHandler)
+def is_port_in_use(port):
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        return s.connect_ex(('127.0.0.1', port)) == 0
+
+def find_available_port(start_port=8000, max_attempts=50):
+    for p in range(start_port, start_port + max_attempts):
+        if not is_port_in_use(p):
+            return p
+    return start_port
+
+def run_server(port=None):
+    if port is None or is_port_in_use(port):
+        port = find_available_port(start_port=8000)
+
+    server_address = ("0.0.0.0", port)
+    httpd = ThreadingHTTPServer(server_address, LandRecordAPIHandler)
     print(f"=======================================================================")
-    print(f"  BHOOMI-AI: Intelligent Land Record Digitization & Validation Platform")
-    print(f"  Server listening on http://localhost:{port}")
-    print(f"  API Endpoints active: /api/records, /api/kpis, /api/cadastral, etc.")
+    print(f"  BHOOMIDRISHTI AI (DILRMP Modernization Platform)")
+    print(f"  Server listening on:")
+    print(f"  --> http://localhost:{port}")
+    print(f"  --> http://127.0.0.1:{port}")
+    print(f"  Multi-threaded REST endpoints ready.")
     print(f"=======================================================================")
     try:
         httpd.serve_forever()
@@ -252,5 +317,5 @@ def run_server(port=8080):
         httpd.server_close()
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8000))
+    port = int(sys.argv[1]) if len(sys.argv) > 1 else None
     run_server(port)
