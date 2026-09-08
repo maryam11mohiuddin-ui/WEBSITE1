@@ -76,9 +76,9 @@ class LandRecordAPIHandler(BaseHTTPRequestHandler):
             # -----------------------------------------------------------------
                 if path.startswith("/api/"):
                     if path == "/api/kpis":
-                    stats = db.get_kpis()
-                    self._send_json({"success": True, "data": stats})
-                    return
+                        stats = db.get_kpis()
+                        self._send_json({"success": True, "data": stats})
+                        return
     
                     elif path == "/api/records":
                         q = query.get("q", [None])[0]
