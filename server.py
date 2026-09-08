@@ -46,7 +46,7 @@ class LandRecordAPIHandler(BaseHTTPRequestHandler):
         self._set_cors_headers()
         self.end_headers()
 
-   def do_GET(self):
+ def do_GET(self):
     parsed = urllib.parse.urlparse(self.path)
     path = parsed.path
     query = urllib.parse.parse_qs(parsed.query)
@@ -112,78 +112,6 @@ class LandRecordAPIHandler(BaseHTTPRequestHandler):
             return
 
     self.send_error(404, f"File not found: {path}")
-
-            elif path == "/api/cadastral/geojson":
-                geojson = cadastral_engine.get_all_parcels()
-                self._send_json({"success": True, "data": geojson})
-                return
-
-            elif path.startswith("/api/cadastral/parcel/"):
-                parcel_id = path.replace("/api/cadastral/parcel/", "").strip()
-                parcel = cadastral_engine.get_parcel_by_id(parcel_id)
-                if parcel:
-                    self._send_json({"success": True, "data": parcel})
-                else:
-                    self._send_json({"success": False, "error": "Parcel not found"}, 404)
-                return
-
-            elif path == "/api/active-learning/metrics":
-                data = active_learning_engine.get_metrics()
-                self._send_json({"success": True, "data": data})
-                return
-
-            elif path == "/api/audit/logs":
-                logs = db.get_audit_logs(60)
-                self._send_json({"success": True, "count": len(logs), "data": logs})
-                return
-
-            elif path == "/api/scope-of-study":
-                self._send_json({"success": True, "data": SCOPE_OF_STUDY_DATA})
-                return
-
-            else:
-                self._send_json({"success": False, "error": "Unknown API endpoint"}, 404)
-                return
-
-        # -----------------------------------------------------------------
-        # Static Frontend File Serving
-        # -----------------------------------------------------------------
-        req_path = path.lstrip("/")
-        if not req_path or req_path == "index.html":
-            file_path = os.path.join(FRONTEND_DIR, "index.html")
-        else:
-            file_path = os.path.join(FRONTEND_DIR, req_path)
-
-        if not os.path.exists(file_path) or os.path.isdir(file_path):
-            file_path = os.path.join(FRONTEND_DIR, "index.html")
-
-        if os.path.exists(file_path):
-            mime_type, _ = mimetypes.guess_type(file_path)
-            if not mime_type:
-                if file_path.endswith(".js"):
-                    mime_type = "application/javascript"
-                elif file_path.endswith(".css"):
-                    mime_type = "text/css"
-                elif file_path.endswith(".json"):
-                    mime_type = "application/json"
-                elif file_path.endswith(".svg"):
-                    mime_type = "image/svg+xml"
-                else:
-                    mime_type = "text/html"
-
-            with open(file_path, "rb") as f:
-                content = f.read()
-
-            self.send_response(200)
-            self.send_header("Content-Type", f"{mime_type}; charset=utf-8" if "text" in mime_type or "javascript" in mime_type else mime_type)
-            self.send_header("Content-Length", str(len(content)))
-            self._set_cors_headers()
-            self.end_headers()
-            self.wfile.write(content)
-        else:
-            self.send_response(404)
-            self.end_headers()
-            self.wfile.write(b"404 Not Found")
 
     def do_POST(self):
         parsed = urllib.parse.urlparse(self.path)
