@@ -47,21 +47,6 @@ class LandRecordAPIHandler(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_GET(self):
-     if self.path == '/' or self.path == '/index.html':
-        try:
-            filename = 'index.html' if os.path.exists('index.html') else 'index.html'
-            with open(filename, 'rb') as f:
-                content = f.read()
-            self.send_response(200)
-            self.send_header('Content-Type', 'text/html; charset=utf-8')
-            self.send_header('Content-Length', str(len(content)))
-            self.end_headers()
-            self.wfile.write(content)
-            return
-        except Exception as e:
-            self.send_error(500, f"Error loading page: {e}")
-            return
-
         parsed = urllib.parse.urlparse(self.path)
         path = parsed.path
         query = urllib.parse.parse_qs(parsed.query)
